@@ -14,6 +14,17 @@
             font-size: 30px;
             border-radius: 0px 0px 20px 20px;
           }
+          .reveal {
+            position: relative;
+            transform: translateY(150px);
+            opacity: 0;
+            transition: 2s all ease;
+          }
+
+          .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+          }
 
       </style>
       <meta charset="utf-8">
@@ -36,26 +47,30 @@
             <div class = "row">
                 {% for item in Items%}
                     <div class="col">
-                        <div class = "card" style ="width=15rem">
-                            <img src={{item.img_source}} class ="card-img-top" alt = "...">
-                            <div class="card-body">
-                                <h4 class = "card-title">{{item.title}}</h4>
-                                <p></p>
-                                <a href="{{item.id}}/detail" class="btn btn-primary">ddddd</a>
-                                <!--<div class="modal fade" id="expmple model" tabindex="-1" aria-labelledby="exampleModelLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModelLabel">{{item.title}}</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <img src={{item.img_source}}>
+                        <div class="container reveal">
+
+
+                            <div class = "card" style ="width=15rem">
+                                <img src={{item.img_source}} class ="card-img-top" alt = "...">
+                                <div class="card-body">
+                                    <h4 class = "card-title">{{item.title}}</h4>
+                                    <p></p>
+                                    <a href="{{item.id}}/detail" class="btn btn-primary">ddddd</a>
+                                    <!--<div class="modal fade" id="expmple model" tabindex="-1" aria-labelledby="exampleModelLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModelLabel">{{item.title}}</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img src={{item.img_source}}>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                </div>-->
+                                    </div>-->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -66,7 +81,24 @@
             </div>
         {% endfor %}
     </div>
-    <script src="friends/scroll.js"></script>
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+    </script>
     {%load static%}
     <script>
         const myModal = document.getElementById('myModal')
