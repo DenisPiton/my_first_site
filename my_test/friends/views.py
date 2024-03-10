@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
+from .file_handler import handle_uploaded_file
 def home(request):
     name = request.POST.get("name", "Undefined")
     age = request.POST.get("age", 1)
@@ -83,3 +84,7 @@ def create_item_tool(request):
 
 def item_creating (request):
     return render(request, "friends/create.html")
+
+
+
+
