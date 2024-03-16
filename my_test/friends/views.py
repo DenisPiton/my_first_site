@@ -86,5 +86,11 @@ def item_creating (request):
     return render(request, "friends/create.html")
 
 
+def testing_expample(request):
+    return render(request, "friends/testing.html")
+def info(request):
+    return render(request, "friends/info.html")
+
+
 
 

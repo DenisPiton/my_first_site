@@ -8,5 +8,7 @@ urlpatterns = [
     path("<int:item_id>/detail", views.card),
     path("profile", views.profile),
     path("profile/create_item", views.item_creating),
-    path("create_item/api", views.create_item_tool)
+    path("create_item/api", views.create_item_tool),
+    path("test", views.testing_expample),
+    path("profile/create_item/info", views.info)
 ]
