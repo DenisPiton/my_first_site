@@ -7,7 +7,7 @@
             border-radius: 10px 10px 10px 10px;
             width: 50vW;
             margin-left:25vW;
-            margin-top:20vW;
+            margin-top:15vW;
             padding: 20px;
         }
     </style>
@@ -22,7 +22,9 @@
 
 
         <div class="container text-center">
+            <h1 align="center">Authorization</h1>
             <form method="post" action="/req">
+
                 {% csrf_token %}
                 <!--<div class="row  align-items-center">
                     <div class="col" align="right">
@@ -36,7 +38,7 @@
                     </div>
                 </div>-->
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="login">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="login" name="login">
                     <label for="floatingInput">Login</label>
                 </div>
                 <div class="mb-3"></div>
