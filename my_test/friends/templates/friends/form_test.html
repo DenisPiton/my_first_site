@@ -3,10 +3,12 @@
 <head>
     <style>
         #test{
-            background-color: red;
+            background-color: #1E90FF;
             border-radius: 10px 10px 10px 10px;
             width: 50vW;
-            margin-left:
+            margin-left:25vW;
+            margin-top:20vW;
+            padding: 20px;
         }
     </style>
     <meta charset="utf-8">
@@ -17,39 +19,40 @@
 </head>
 <body>
     <div id="test" align="center">
-        jhghgfgh
-    </div>
-    <div class="container text-center">
-        <form method="post" action="/req">
-            {% csrf_token %}
-            <div class="row  align-items-center">
-                <div class="col" align="right">
-                    <label>Login:</label>
-                </div>
-                <div class="col">
-                    <input type="text" name="login" class="form-control" >
-                </div>
-                <div class="col">
 
+
+        <div class="container text-center">
+            <form method="post" action="/req">
+                {% csrf_token %}
+                <div class="row  align-items-center">
+                    <div class="col" align="right">
+                        <label>Login:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" name="login" class="form-control" >
+                    </div>
+                    <div class="col">
+
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3"></div>
-            <div class="row ">
-                <div class="col" align="right">
-                    <label for="inputPassword6" class="col-form-label">Password:</label>
+                <div class="mb-3"></div>
+                <div class="row ">
+                    <div class="col" align="right">
+                        <label for="inputPassword6" class="col-form-label">Password:</label>
+                    </div>
+                    <div class="col">
+                        <input type="password" name="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                    <div class="col" align="left">
+                        <span id="passwordHelpInline" class="form-text">
+                            Must be 8-20 characters long.
+                        </span>
+                    </div>
                 </div>
-                <div class="col">
-                    <input type="password" name="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                </div>
-                <div class="col" align="left">
-                    <span id="passwordHelpInline" class="form-text">
-                        Must be 8-20 characters long.
-                    </span>
-                </div>
-            </div>
-            <div class="mb-3"></div>
-         <a href="/home"><input style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 4rem; --bs-btn-font-size: 1rem;" class="btn btn-primary" type="submit" value="Send" /></a>
-        </form>
+                <div class="mb-3"></div>
+             <a href="/home"><input style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 4rem; --bs-btn-font-size: 1rem;" class="btn btn-primary" type="submit" value="Send" /></a>
+            </form>
+        </div>
     </div>
 
 </body>
