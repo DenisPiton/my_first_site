@@ -10,6 +10,6 @@ urlpatterns = [
     path("profile/create_item", views.item_creating),
     path("create_item/api", views.create_item_tool),
     path("test", views.testing_expample),
-    path("profile/create_item/info", views.info),
+    path("profile/create_item/info", views.info)
 
 ]
