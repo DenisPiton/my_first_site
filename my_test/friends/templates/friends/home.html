@@ -9,6 +9,9 @@
             background: #1E90FF;
             border-radius: 0px 0px 20px 20px;
           }
+          form{
+            display:flex;
+          }
           nav .nav-blue{
             background: #1E90FF;
             font-size: 30px;
@@ -43,6 +46,22 @@
     <nav class = "blue-nav" >
         <a class="btn" href="/profile" id="blank"><h3>Profile</h3></a>
         <a class="btn btn-secondary" href="/test" >Test area</a>
+        <div class="mb-3"></div>
+<!--        <form action="/home/search" method="post">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="request" name="request">
+                <label style="font-size: 1vW;" for="floatingInput">Search</label>
+            </div>
+            <input class="btn btn-success" type="submit" value="Send"  />
+
+        </form>-->
+        <form method="post">
+            {%csrf_token%}
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="request">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
     </nav>
 
 

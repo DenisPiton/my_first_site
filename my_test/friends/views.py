@@ -7,24 +7,46 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-
 from .file_handler import handle_uploaded_file
+
+
 def home(request):
-    name = request.POST.get("name", "Undefined")
+    name = request.POST.get("request")
     age = request.POST.get("age", 1)
-    Items = Item.objects.order_by("-title")
-    Items_by3 = []
-    buf = []
-    for i in Items:
-        buf.append(i)
-        if len(buf) == 3:
-            Items_by3.append(buf)
-            buf = []
-    Items_by3.append(buf)
-    contex = {
-        "Items_by3": Items_by3
-    }
-    return render(request, "friends/home.html", contex)
+    if name is not None:
+        Items_original = Item.objects.order_by("-title")
+        Items = []
+        for i in Items_original:
+            if name.lower() in i.title:
+                Items.append(i)
+
+        Items_by3 = []
+        buf = []
+        for i in Items:
+            buf.append(i)
+            if len(buf) == 3:
+                Items_by3.append(buf)
+                buf = []
+        Items_by3.append(buf)
+        contex = {
+            "Items_by3": Items_by3
+        }
+        return render(request, "friends/home.html", contex)
+    else:
+        Items = Item.objects.order_by("-title")
+        Items_by3 = []
+        buf = []
+        for i in Items:
+            buf.append(i)
+            if len(buf) == 3:
+                Items_by3.append(buf)
+                buf = []
+        Items_by3.append(buf)
+        contex = {
+            "Items_by3": Items_by3
+        }
+        return render(request, "friends/home.html", contex)
+
 
 
 def login2(request):
@@ -70,6 +92,7 @@ def profile(request):
     else:
         return render(request, "friends/profile.html", {"user": request.user})
 
+
 def create_item_tool(request):
     a = Item()
     descr = request.POST.get("description", "a")
@@ -82,15 +105,19 @@ def create_item_tool(request):
     a.save()
     return redirect(home)
 
-def item_creating (request):
+
+def item_creating(request):
     return render(request, "friends/create.html")
 
 
 def testing_expample(request):
     return render(request, "friends/testing.html")
+
+
 def info(request):
     return render(request, "friends/info.html")
 
 
-
-
+def searching(request):
+    req = request.POST["request"]
+    return HttpResponse(req)
