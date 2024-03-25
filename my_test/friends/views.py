@@ -85,8 +85,14 @@ def submit(request):
 
 
 def card(request, item_id):
-    item = get_object_or_404(Item, pk=item_id)
-    return render(request, "friends/detail.html", {"item": item})
+    delete=request.POST.get("delete")
+    if delete is not None:
+        item=get_object_or_404(Item, pk=item_id)
+        item.delete()
+        return render(request, "friends/detail.html", {"item":item, "user":request.user})
+    else:
+        item = get_object_or_404(Item, pk=item_id)
+        return render(request, "friends/detail.html", {"item": item, "user": request.user})
 
 
 def profile(request):

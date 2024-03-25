@@ -35,6 +35,12 @@
                         <h5 class="card-title">{{item.title}}</h5>
                         <p class="card-text">{{item.description | linebreaks}}</p>
                         <p class="card-text"><small class="text-body-secondary">Created by {{item.created_by}}</small></p>
+                        {%if user.is_superuser%}
+                            <form method="post" >
+                                {% csrf_token %}
+                                <input class="btn btn-danger" name="delete" type="submit" value="delete">
+                            </form>
+                        {%endif%}
 
                     </div>
                 </div>
