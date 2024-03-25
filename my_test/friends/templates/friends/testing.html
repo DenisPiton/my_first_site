@@ -3,44 +3,21 @@
 
 <head>
     <style>
-        #animation{
-            width: 50px;
-            height: 50px;
-            position: absolute;
+        .gradient{
+            margin-left: 10vW;
+
+            background:
+            radial-gradient(circle at 50% 0, rgba(255, 0, 0, 1), rgba(255, 0, 0, 0) 70.71%),
+            radial-gradient(circle at 6.7% 75%, rgba(0, 0, 255, 1), rgba(0, 0, 255, 0) 70.71%),
+            radial-gradient(circle at 93.3% 75%, rgba(0, 255, 0, 1), rgba(0, 255, 0, 0) 70.71%);
 
         }
-        #container{
-            width: 400px;
-            height: 400px;
-            position: relative;
-        }
-        .card-top{
-            width: 400px;
-            height: 400px;
-            border: 5px solid #2E9AFF;
-            border-radius: 10px 10px 0px 0px;
-            margin-top: 100px;
-            marin-left: 35vW;
-            object-fit: cover;
-        }
-        #card-top{
-            width: 400px;
-            height: 400px;
-            border: 5px solid #2E9AFF;
-            border-radius: 10px 10px 0px 0px;
-            margin-top: 100px;
-            margin-left: 35vW;
-            object-fit: cover;
-        }
-        #card-down{
-            width: 400px;
-            height: 200px;
-            border: 5px solid #2E9AFF;
-            margin-left: 35vW;
-            border-radius: 0px 0px 10px 10px;
-        }
-        #image{
-            object-fit: cover;
+        body{
+            background:
+
+            radial-gradient(circle at 6.7% 75%, rgba(0, 0, 255, 0.5), rgba(0, 0, 255, 0) 70.71%),
+            radial-gradient(circle at 93.3% 75%, rgba(0, 255, 0, 0.5), rgba(0, 255, 0, 0) 70.71%);
+
         }
     </style>
     <meta charset="utf-8">
@@ -51,10 +28,10 @@
 </head>
 
 <body>
-    <img class="card-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw4UeEjjERyEVTOIaXIKHlj7snPZAKulH5-z1Kau1lsw&s">
-    <div id="card-down">
-
+    <div class="gradient">
+        <h1>Hello</h1>
     </div>
+
 </body>
 
 </html>

@@ -13,11 +13,12 @@ from .file_handler import handle_uploaded_file
 def home(request):
     name = request.POST.get("request")
     age = request.POST.get("age", 1)
+
     if name is not None:
         Items_original = Item.objects.order_by("-title")
         Items = []
         for i in Items_original:
-            if name.lower() in i.title:
+            if name.lower() in i.title.lower():
                 Items.append(i)
 
         Items_by3 = []
@@ -29,8 +30,10 @@ def home(request):
                 buf = []
         Items_by3.append(buf)
         contex = {
+            "user": request.user,
             "Items_by3": Items_by3
         }
+
         return render(request, "friends/home.html", contex)
     else:
         Items = Item.objects.order_by("-title")
@@ -98,15 +101,19 @@ def create_item_tool(request):
     descr = request.POST.get("description", "a")
     image_url = request.POST["image_url"]
     title = request.POST["title"]
+
     a.description = descr
     a.img_source = image_url
     a.title = title
+
     a.created_by = request.user.username
     a.save()
     return redirect(home)
 
 
 def item_creating(request):
+    contex = {}
+
     return render(request, "friends/create.html")
 
 

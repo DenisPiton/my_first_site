@@ -5,7 +5,7 @@ from django.db import models
 class Item(models.Model):
     img_source = models.CharField(max_length=1000)
     title = models.CharField(max_length=1000)
-    description = models.CharField(max_length=1000)
+    description = models.CharField(max_length=10000)
     created_by = models.CharField(max_length=30)
     description.default = "a"
     created_by.default = ""
