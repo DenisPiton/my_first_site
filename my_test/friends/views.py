@@ -12,15 +12,19 @@ from .file_handler import handle_uploaded_file
 
 def home(request):
     name = request.POST.get("request")
-    age = request.POST.get("age", 1)
+    tag = request.POST.get("tag")
 
     if name is not None:
         Items_original = Item.objects.order_by("-title")
         Items = []
-        for i in Items_original:
-            if name.lower() in i.title.lower():
-                Items.append(i)
-
+        if tag != "Выберите вид рецепта":
+            for i in Items_original:
+                if name.lower() in i.title.lower() and i.tag == tag:
+                    Items.append(i)
+        else:
+            for i in Items_original:
+                if name.lower() in i.title.lower():
+                    Items.append(i)
         Items_by3 = []
         buf = []
         for i in Items:
@@ -89,7 +93,7 @@ def card(request, item_id):
     if delete is not None:
         item=get_object_or_404(Item, pk=item_id)
         item.delete()
-        return render(request, "friends/detail.html", {"item":item, "user":request.user})
+        return redirect(home)
     else:
         item = get_object_or_404(Item, pk=item_id)
         return render(request, "friends/detail.html", {"item": item, "user": request.user})
@@ -107,11 +111,12 @@ def create_item_tool(request):
     descr = request.POST.get("description", "a")
     image_url = request.POST["image_url"]
     title = request.POST["title"]
+    tag = request.POST["tag"]
 
     a.description = descr
     a.img_source = image_url
     a.title = title
-
+    a.tag = tag
     a.created_by = request.user.username
     a.save()
     return redirect(home)

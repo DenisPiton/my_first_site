@@ -9,6 +9,7 @@ class Item(models.Model):
     created_by = models.CharField(max_length=30)
     description.default = "a"
     created_by.default = ""
-
+    tag = models.CharField(max_length=200)
+    tag.default = "other food"
 
 

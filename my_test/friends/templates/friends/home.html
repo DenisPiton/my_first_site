@@ -65,6 +65,12 @@
         <form method="post">
             {%csrf_token%}
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="request">
+            <select class="form-select" aria-label="Default select example" name="tag">
+                    <option selected>Выберите вид рецепта</option>
+                    <option value="Первое" >Первое</option>
+                    <option value="Второе" >Второе</option>
+                    <option value="Выпечка">Выпечка</option>
+            </select>
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
 
