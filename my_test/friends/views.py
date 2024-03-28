@@ -6,6 +6,7 @@ from django.db.models import F
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+import sqlite3
 
 from .file_handler import handle_uploaded_file
 
