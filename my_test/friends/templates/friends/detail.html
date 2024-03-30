@@ -12,6 +12,11 @@
             display: flex;
             border-radius: 0px 0px 25px 25px;
         }
+        .ingr{
+            border: 1px solid #4e4e4e;
+            border-radius: 3px 3px 3px 3px;
+
+        }
 
 
     </style>
@@ -32,7 +37,14 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">{{item.title}}</h5>
+                        <h5 class="card-title" align="center">{{item.title}}</h5>
+
+                        <div class="ingr" align="center">
+                            {%for pair in Pairs%}
+
+                            {%endfor%}
+                        </div>
+
                         <p class="card-text">{{item.description | linebreaks}}</p>
                         <p class="card-text"><small class="text-body-secondary">Created by {{item.created_by}}</small></p>
                         {%if user.is_superuser%}

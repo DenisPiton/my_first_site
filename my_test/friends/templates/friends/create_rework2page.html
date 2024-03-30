@@ -35,7 +35,7 @@
     </nav>
 
     <div class="text-container">
-        <form method="post" action="/create_item/api">
+        <form method="post" >
             {% csrf_token %}
             <div class="text-container">
                 <div class="text-box">
@@ -48,10 +48,10 @@
                 <b>Title:  </b>
                 <input name="title" type="text" class="form-control">
             </div>
-            <div class="text-container">
-                <b>Image:  </b>
-                <input name="image" type="file" class="form-control">
-            </div>
+<!--            <div class="text-container">-->
+<!--                <b>Image:  </b>-->
+<!--                <input name="image" type="file" class="form-control">-->
+<!--            </div>-->
 
             <div class="text-container">
                 <b>Type: </b>
@@ -63,23 +63,30 @@
                 </select>
             </div>
             <div class="text-container">
-                {% for i in Range%}
-
-                    <div style="display: flex;">
-                        <input type="text" class="form-control" name="ingr_name{{i}}">
-                        <input type="text" class="form-control" name="ingr_value{{i}}" style="margin-left: 10px;">
+                <b>Ingredients:</b>
+                {% for i in amount %}
+                    <div class="input-group mb-3">
+                        <input class="form-control" type="text" name="ingr-name{{i}}">
+                        <span class="input-group-text">---</span>
+                        <input class="form-control" type="text" name="ingr-value{{i}}">
                     </div>
                 {%endfor%}
+
             </div>
+<!--            <div class="text-container">-->
+<!--                {% for i in Range%}-->
+
+<!--                    <div style="display: flex;">-->
+<!--                        <input type="text" class="form-control" name="ingr_name{{i}}">-->
+<!--                        <input type="text" class="form-control" name="ingr_value{{i}}" style="margin-left: 10px;">-->
+<!--                    </div>-->
+<!--                {%endfor%}-->
+<!--            </div>-->
             <div class="text-container">
                 <div class="form-floating">
                     <textarea class="form-control" name="description" id="floatingTextarea2" style="height: 100px"></textarea>
                     <label for="floatingTextarea2">Description</label>
                 </div>
-
-            </div>
-            <div class="text-container">
-                {{am}}
 
             </div>
             <div class="info">

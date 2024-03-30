@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        nav {
+            background: #1E90FF;
+            padding: 20px;
+            border-radius: 0px 0px 10px 10px;
+        }
+        .text-container{
+            padding: 20px;
+        }
+        .nav-bar{
+            font-size: 30px;
+        }
+        .info{
+            display:flex;
+        }
+        .info{
+            padding:20px;
+        }
+        #btn-info{
+            margin-right: 5px;
+        }
+
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>create</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="nav-test">
+        <a class="btn" href="/home"><b class="nav-bar">Home</b></a>
+    </nav>
+    <form method="post" action="/profile/create_item">
+        {% csrf_token %}
+            <div class="text-container">
+                <b>Type: </b>
+                <select class="form-select" aria-label="Default select example" name="amount">
+                    <option selected>1</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </select>
+            </div>
+        <input style="--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 3rem; --bs-btn-font-size: 1rem;" class="btn btn-primary" type="submit" value="Next" />
+    </form>
+</body>
+</html>

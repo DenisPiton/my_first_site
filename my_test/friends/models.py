@@ -11,6 +11,10 @@ class Item(models.Model):
     created_by.default = ""
     tag = models.CharField(max_length=200)
     tag.default = "other food"
+    ingredients = models.CharField(max_length=2000)
+    ingredients.default= ""
+    image = models.ImageField(upload_to="images")
+    image.default = ""
 
-
-
+class test_image_upload(models.Model):
+    image = models.ImageField(upload_to="images/")

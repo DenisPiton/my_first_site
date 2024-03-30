@@ -56,7 +56,6 @@ def home(request):
         return render(request, "friends/home.html", contex)
 
 
-
 def login2(request):
     if not request.user.is_authenticated:
 
@@ -90,14 +89,19 @@ def submit(request):
 
 
 def card(request, item_id):
-    delete=request.POST.get("delete")
+    delete = request.POST.get("delete")
     if delete is not None:
-        item=get_object_or_404(Item, pk=item_id)
+        item = get_object_or_404(Item, pk=item_id)
         item.delete()
         return redirect(home)
     else:
         item = get_object_or_404(Item, pk=item_id)
-        return render(request, "friends/detail.html", {"item": item, "user": request.user})
+
+        buf = []
+        for i in item.ingredients.split("$"):
+            buf.append(i.split("|"))
+
+        return render(request, "friends/detail.html", {"item": item, "user": request.user, "Pairs": buf[:len(buf)-1]})
 
 
 def profile(request):
@@ -107,26 +111,74 @@ def profile(request):
         return render(request, "friends/profile.html", {"user": request.user})
 
 
-def create_item_tool(request):
-    a = Item()
-    descr = request.POST.get("description", "a")
-    image_url = request.POST["image_url"]
-    title = request.POST["title"]
-    tag = request.POST["tag"]
+# def create_item_tool(request):
+#     a = Item()
+#     while True:
+#         i = 0
+#         if request.POST.get("ingr_name" + str(i)) is not None:
+#             a.buf = request.POST.get("ingr_name" + str(i)) + "|" + request.POST.get("ingr_value" + str(i))
+#             a.ingr.append(a.buf)
+#         else:
+#             break
+#         i += 1
+#     descr = request.POST.get("description", "a")
+#     image_url = request.POST["image_url"]
+#     title = request.POST["title"]
+#     tag = request.POST["tag"]
+#     image = request.POST["image"]
+#
+#     a.description = descr
+#     a.img_source = image_url
+#     a.title = title
+#     a.tag = tag
+#     a.image = image
+#     a.created_by = request.user.username
+#     a.save()
+#     return redirect(home)
+#
+#
+# def creat_validation(request):
+#     return render(request, "friends/create_valid.html")
+#
+#
+# def item_creating(request):
+#     amount = request.POST["amount"]
+#     contex = {
+#         "Range": range(int(amount))}
+#
+#     return render(request, "friends/create.html", contex)
 
-    a.description = descr
-    a.img_source = image_url
-    a.title = title
-    a.tag = tag
-    a.created_by = request.user.username
-    a.save()
-    return redirect(home)
 
+def create(request):
 
-def item_creating(request):
-    contex = {}
+    amount = request.POST.get("amount")
 
-    return render(request, "friends/create.html")
+    if request.POST.get("amount") is None and request.POST.get("title") is None:
+        return render(request, "friends/create_rework1page.html")
+    elif request.POST.get("amount") is not None and request.POST.get("title") is None:
+        contex = {"amount": range(1, int(amount)+1)}
+        return render(request, "friends/create_rework2page.html", context=contex)
+    else:
+        a = Item()
+        a.title = request.POST.get("title")
+        a.tag = request.POST.get("tag")
+        a.description = request.POST.get("description")
+        a.created_by = request.user.username
+        a.img_source = request.POST.get("image_url")
+        buf1=""
+        buf2=""
+        i=1
+        while request.POST.get("ingr-name"+str(i)) is not None:
+            buf1 += request.POST.get("ingr-name"+str(i))
+            buf1 += "|"
+            buf1 += request.POST.get("ingr-value"+str(i))
+            buf2 += buf1 + "$"
+            buf1=""
+            i+=1
+        a.ingredients = buf2
+        a.save()
+        return redirect(home)
+
 
 
 def testing_expample(request):
