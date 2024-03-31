@@ -17,6 +17,10 @@
             border-radius: 3px 3px 3px 3px;
 
         }
+        ingr-2{
+            display: flex;
+
+        }
 
 
     </style>
@@ -38,11 +42,22 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title" align="center">{{item.title}}</h5>
+                        <div class="ingr">
 
-                        <div class="ingr" align="center">
-                            {%for pair in Pairs%}
 
-                            {%endfor%}
+                            <div class="container text-center">
+                                {%for pair in Pairs%}
+                                    <div class="row">
+                                        <div class="col" align="left" style="padding: .6vW;">
+                                            {{pair.0}}
+                                        </div>
+                                        <div class="col-8" ><div class="ingr" style="weight: 4vW; margin-top: 1.3vW;"></div></div>
+                                        <div class="col" align="right" style="padding: .6vW;">
+                                            {{pair.1}}
+                                        </div>
+                                    </div>
+                                {%endfor%}
+                            </div>
                         </div>
 
                         <p class="card-text">{{item.description | linebreaks}}</p>
