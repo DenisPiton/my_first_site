@@ -16,5 +16,10 @@ class Item(models.Model):
     image = models.ImageField(upload_to="images")
     image.default = ""
 
+
+class Comments(models.Model):
+    created_by = models.CharField(max_length=255)
+    comment_text = models.TextField()
+    related_to = models.ForeignKey(Item, on_delete=models.CASCADE)
 class test_image_upload(models.Model):
     image = models.ImageField(upload_to="images/")

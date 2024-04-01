@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
-from .models import Item
+from .models import Item, Comments
 from django.db.models import F
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -90,18 +90,26 @@ def submit(request):
 
 def card(request, item_id):
     delete = request.POST.get("delete")
+    comment_text = request.POST.get("comment")
     if delete is not None:
         item = get_object_or_404(Item, pk=item_id)
         item.delete()
         return redirect(home)
     else:
+        if comment_text is not None:
+            com = Comments()
+            com.created_by = request.user.username
+            com.comment_text = comment_text
+            com.related_to = get_object_or_404(Item, pk=item_id)
+            com.save()
         item = get_object_or_404(Item, pk=item_id)
+        comments = Comments.objects.select_related("related_to")
 
         buf = []
         for i in item.ingredients.split("$"):
             buf.append(i.split("|"))
 
-        return render(request, "friends/detail.html", {"item": item, "user": request.user, "Pairs": buf[:len(buf)-1]})
+        return render(request, "friends/detail.html", {"item": item, "user": request.user, "Pairs": buf[:len(buf)-1], "Comments":comments})
 
 
 def profile(request):

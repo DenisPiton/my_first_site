@@ -73,6 +73,22 @@
                 </div>
             </div>
         </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-floating">
+                <textarea class="form-control" name="comment" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Leave your comment here</label>
+            </div>
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+    <div class="container" style="padding: 5vW;">
+        {% for com in Comments %}
+            <div class="card mb-3" style="padding: 1vW;">
+                <p class="card-text">{{com.comment_text | linebreaks}}</p>
+                <p class="card-text" align="right"><small class="text-body-secondary">Created by {{com.created_by}}</small></p>
+            </div>
+        {% endfor %}
     </div>
 
 
