@@ -102,8 +102,11 @@ def card(request, item_id):
             com.comment_text = comment_text
             com.related_to = get_object_or_404(Item, pk=item_id)
             com.save()
+            return redirect(home)
         item = get_object_or_404(Item, pk=item_id)
-        comments = Comments.objects.select_related("related_to")
+        comments = Comments.objects.filter(related_to=item)
+
+
 
         buf = []
         for i in item.ingredients.split("$"):
