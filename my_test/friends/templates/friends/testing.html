@@ -11,7 +11,11 @@
 </head>
 <body>
     <div style="padding: 100px;">
-        <h1 class="test">Test</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Send">
+        </form>
     </div>
 
 </body>

@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import sqlite3
-
+from .forms import Test_form
 from .file_handler import handle_uploaded_file
 
 
@@ -191,9 +191,15 @@ def create(request):
         return redirect(home)
 
 
-
 def testing_expample(request):
-    return render(request, "friends/testing.html")
+    if request.method == "POST":
+        form = Test_form(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(home)
+    else:
+        form = Test_form()
+    return render(request, "friends/testing.html", {"form": form})
 
 
 def info(request):
