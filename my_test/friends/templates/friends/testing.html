@@ -12,9 +12,12 @@
 <body>
     <div style="padding: 100px;">
         <form method="post" enctype="multipart/form-data">
+            {% load widget_tweaks %}
             {% csrf_token %}
-            {{form.as_p}}
-            <input type="submit" value="Send">
+            <div class="text-container">
+                {%render_field form.image type="file" class="form-control" %}
+            </div>
+            <input type="submit" value="Send" class="btn btn-primary" style="margin-top: 1vW;">
         </form>
     </div>
 
